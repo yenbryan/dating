@@ -1,0 +1,35 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<section id="register" style="background-image: url('{% static 'img/youth-boy-girl-dating-couple-Favim.com-485053.jpg' %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1 class="box-words section-heading">DATE & HAVE FUN</h1>
+                        <hr class="small">
+                        <span class="subheading pull-right">"the best way to meet your date" - start now</span>
+                    <form method="post" action="{% url 'matches' %}">
+                        {% csrf_token %}
+                        <span>
+                        <div class="form-group">
+                            <span class="white-text bg-black">I AM A</span>
+                            {{ search_form.male_female }}
+
+                        </div>
+                        <div class="form-group">
+                            <span class="white-text bg-black">LOOKING FOR A</span>
+                            {{ search_form.looking_for_male_female }}
+
+                        </div>
+                            </span>
+                        <button class="btn btn-xl pull-left" type="submit">matches!</button>
+
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+ </section>
+ {% endblock %}
