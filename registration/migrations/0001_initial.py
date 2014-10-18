@@ -30,6 +30,7 @@ class Migration(migrations.Migration):
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
                 ('male_female', models.CharField(max_length=1, choices=[(b'M', b'Male'), (b'F', b'Female')])),
                 ('looking_for_male_female', models.CharField(max_length=1, choices=[(b'M', b'Male'), (b'F', b'Female')])),
+                ('paid_user', models.BooleanField(default=False)),
                 ('groups', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of his/her group.', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Permission', blank=True, help_text='Specific permissions for this user.', verbose_name='user permissions')),
             ],
