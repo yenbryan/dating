@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'registration',
     'date_app',
 
     'django.contrib.admin',
@@ -95,22 +94,22 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social.apps.django_app.context_processors.login_redirect',
 )
 
-AUTHENTICATION_BACKENDS = (
-    'social.backends.facebook.FacebookOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'social.backends.facebook.FacebookOAuth2',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '64318926627'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'e72b538d8816227aa44d4f9d582a7f23'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile', 'user_photos']
+# SOCIAL_AUTH_FACEBOOK_KEY = '64318926627'
+# SOCIAL_AUTH_FACEBOOK_SECRET = 'e72b538d8816227aa44d4f9d582a7f23'
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile', 'user_photos']
 
 # Related to users
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'login'
-AUTH_USER_MODEL = 'registration.Profile'
+AUTH_USER_MODEL = 'date_app.Dater'
 
 #
-# EMAIL STUFF
+# EMAIL
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = ''
@@ -118,12 +117,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = ''
 
-# import braintree
-#
-# braintree.Configuration.configure(braintree.Environment.Sandbox,
-#                                   merchant_id="cyttpz8353vkpbrd",
-#                                   public_key="nrn2r5tngvrn5f2v",
-#                                   private_key="0f09fcb2f66e479b3473297b35d85d35")
+
 
 try:
     from local_settings import *
