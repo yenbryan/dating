@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="profile_details">
+        <h3>{{ user.username }}</h3>
+        <p>{{ user.occupation }}</p>
+        <p>{{ user.age }}</p>
+        <p>{{ user.height }}</p>
+        <p>{{ user.weight }}</p>
+    </div>
+
+    <div id="profile_image">
+        <a href="{% url 'dater_profile' user.id %}"><img width="400px" src="{{ user.profile_image }}"></a>
+    </div>
+
+{% endblock content %}

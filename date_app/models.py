@@ -7,7 +7,7 @@ class Dater(AbstractUser):
     gender_preference_male = models.BooleanField(default=True)
     occupation = models.CharField(max_length=50, blank=True)
     age = models.IntegerField(max_length=2, null=True, blank=True)
-    height = models.CharField(max_length=20)
+    height = models.CharField(max_length=20, null=True, blank=True)
     weight = models.IntegerField(max_length=4, null=True, blank=True)
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
@@ -33,7 +33,7 @@ class Match(models.Model):
         #2 = bumped to curb
         #3 = bumpin
 
-    user1 = models.ForeignKey(Dater, related_name='match')
+    user1 = models.ForeignKey(Dater, related_name='matches')
     user2 = models.ForeignKey(Dater, related_name='user_2_match')
     user1_select = models.IntegerField()
     user2_select = models.IntegerField()

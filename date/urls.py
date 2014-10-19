@@ -24,9 +24,8 @@ urlpatterns = patterns('',
     # url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.search_lat_long', name='search_lat_long'),
     #PROFILE#
     url(r'^profile/$', 'date_app.views.profile', name='profile'),
-
-
-
+    #DATER PROFILE#
+    url(r'^dater_profile/(?P<dater_id>\w+)/$', 'date_app.views.dater_profile', name='dater_profile'),
 )
 
 

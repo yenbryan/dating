@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 # REGISTRATION #
 ###############
 from date_app.forms import DaterCreationForm
-from date_app.models import Dater
+from date_app.models import Dater, Match
 
 
 def register(request):
@@ -46,7 +46,7 @@ def register(request):
 #Search for Dater's current location
 # @login_required()
 def search(request):
-    return render(request,"search.html")
+    return render(request, "search.html")
 
 
 #Set the Dater's location
@@ -72,25 +72,37 @@ def set_lat_long(request, coordinates):
 # BUMP INTO MATCHES #
 ####################
 
-def bump_into_matches():
+def bump_into_matches(user):
+    bump_into_matches = Match.objects.filter(user1=user, user1_select=1, user2_select=1)
+    return bump_into_matches  #returns filtered match objects
 
-    return
 ##################
 # BUMPIN MATCHES #
 ##################
 
-def bumpin_matches():
-
-    return
+def bumpin_matches(user):
+    bumpin_matches = Match.objects.filter(user1=user, user1_select=3, user2_select=3)
+    return bumpin_matches #returns filtered match objects
 
 ###########
 # PROFILE #
 ###########
 
 def profile(request):
+    dater = request.user
 
     data = {
-        bump_into_matches = bump_into_matches()
-        bumpin_matches = bumpin_matches
+        'bump_into_matches':bump_into_matches(dater),
+        'bumpin_matches': bumpin_matches(dater),
     }
+
     return render(request, "profile.html", data)
+
+def dater_profile(request, dater_id):
+    data = {
+        'dater': Dater.objects.get(pk=dater_id)
+    }
+    return render(request, "date_profile.html", data)
+
+
+
