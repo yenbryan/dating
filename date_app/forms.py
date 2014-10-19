@@ -42,18 +42,10 @@ class DaterCreationForm(UserCreationForm):
 
     class Meta:
         model = Dater
-        fields = ("username", "email", "first_name", "last_name", "password1", "password2",'gender_male', 'height', 'weight')
+        fields = ("username", "email", "first_name", "last_name", "password1", "password2", 'age', 'height', 'weight', 'profile_image')
 
+    # ADD: Gender, Gender Preference, how to upload image, how to set occupation_choices to the occupation field
 
-    #     gender_male = models.BooleanField(default=True)
-    # gender_preference_male = models.BooleanField(default=True)
-    # occupation = models.CharField(max_length=50, blank=True)
-    # age = models.IntegerField(max_length=2, null=True, blank=True)
-    # height = models.CharField(max_length=20)
-    # weight = models.IntegerField(max_length=4, null=True, blank=True)
-    # latitude = models.CharField(max_length=50)
-    # longitude = models.CharField(max_length=50)
-    # profile_image = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
 
     def clean_username(self):
         username = self.cleaned_data["username"]

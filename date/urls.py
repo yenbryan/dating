@@ -22,10 +22,8 @@ urlpatterns = patterns('',
     url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.set_lat_long', name='set_lat_long'),
 
     # url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.search_lat_long', name='search_lat_long'),
-    #HOME#
-    url(r'^home/$', 'date_app.views.home', name='home'),
     #PROFILE#
-    # url(r'^profile/$', 'date_app.views.profile', name='profile'),
+    url(r'^profile/$', 'date_app.views.profile', name='profile'),
 
 
 

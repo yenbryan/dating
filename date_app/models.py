@@ -28,6 +28,11 @@ class Image(models.Model):
 
 
 class Match(models.Model):
+    #user selection options:
+        #1 = bump_into
+        #2 = bumped to curb
+        #3 = bumpin
+
     user1 = models.ForeignKey(Dater, related_name='match')
     user2 = models.ForeignKey(Dater, related_name='user_2_match')
     user1_select = models.IntegerField()

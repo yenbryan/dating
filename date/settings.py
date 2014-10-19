@@ -108,7 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile', 'user_photos']
 
 # Related to users
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'search'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'date_app.Dater'
 

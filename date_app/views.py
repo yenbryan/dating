@@ -39,9 +39,9 @@ def register(request):
     })
 
 
-########
+##########
 # SEARCH #
-########
+##########
 
 #Search for Dater's current location
 # @login_required()
@@ -58,7 +58,7 @@ def set_lat_long(request, coordinates):
     dater.latitude = my_lat
     dater.longitude = my_long
     dater.save()
-    return home(request)
+    return profile(request)
 
 # def search_lat_long(request, coordinates):
 #     match = re.search(r'=([^&]*)&[^=]*=(.*)$',coordinates)
@@ -68,9 +68,29 @@ def set_lat_long(request, coordinates):
 #     return render(request,dater_list)
 
 
-########
-# HOME #
-########
+#####################
+# BUMP INTO MATCHES #
+####################
 
-def home(request):
-    return render(request, "home.html")
+def bump_into_matches():
+
+    return
+##################
+# BUMPIN MATCHES #
+##################
+
+def bumpin_matches():
+
+    return
+
+###########
+# PROFILE #
+###########
+
+def profile(request):
+
+    data = {
+        bump_into_matches = bump_into_matches()
+        bumpin_matches = bumpin_matches
+    }
+    return render(request, "profile.html", data)
