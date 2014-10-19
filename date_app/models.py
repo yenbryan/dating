@@ -9,8 +9,8 @@ class Dater(AbstractUser):
     age = models.IntegerField(max_length=2, null=True, blank=True)
     height = models.CharField(max_length=20)
     weight = models.IntegerField(max_length=4, null=True, blank=True)
-    latitude = models.CharField(max_length=50)
-    longitude = models.CharField(max_length=50)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
     profile_image = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
 
     def __unicode__(self):
