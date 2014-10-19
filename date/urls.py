@@ -2,26 +2,30 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from date import settings
-from registration import urls as registration_urls
 from date_app import urls as profile_urls
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'date.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+    #ADMIN#
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^register/', include(registration_urls)),
-    url(r'^profile/', include(profile_urls)),
-    url('', include('social.apps.django_app.urls', namespace='social')),
+    #LOGIN AND REGISTER
+    url(r'^$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^register/$', 'date_app.views.register', name='register'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
+    # PASSWORD RESET
+    url(r'^password_reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
+    url(r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    'django.contrib.auth.views.password_reset_confirm',
+    name='password_reset_confirm'),
+    #SEARCH#
+    url(r'^search/$', 'date_app.views.search', name='search'),
+    url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.set_lat_long', name='set_lat_long'),
 
-
-    # landing pageurl(r'^$', 'date_app.views.home', name='home'),
-    url(r'^$', 'date_app.views.home', name='home'),
-    url(r'^matches/', 'date_app.views.matches', name='matches'),
-
-    url(r'^purchase', 'registration.views.create_purchase', name='purchase'),
-
+    # url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.search_lat_long', name='search_lat_long'),
+    #PROFILE#
+    url(r'^profile/$', 'date_app.views.profile', name='profile'),
+    #DATER PROFILE#
+    url(r'^dater_profile/(?P<dater_id>\w+)/$', 'date_app.views.dater_profile', name='dater_profile'),
 )
 
 
