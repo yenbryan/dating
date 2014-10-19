@@ -17,10 +17,16 @@ urlpatterns = patterns('',
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
     'django.contrib.auth.views.password_reset_confirm',
     name='password_reset_confirm'),
+    #SEARCH#
+    url(r'^search/$', 'date_app.views.search', name='search'),
+    url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.set_lat_long', name='set_lat_long'),
+
+    # url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.search_lat_long', name='search_lat_long'),
     #HOME#
     url(r'^home/$', 'date_app.views.home', name='home'),
     #PROFILE#
     # url(r'^profile/$', 'date_app.views.profile', name='profile'),
+
 
 
 )

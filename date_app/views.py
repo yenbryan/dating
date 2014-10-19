@@ -1,3 +1,4 @@
+import re
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
@@ -9,6 +10,7 @@ from django.shortcuts import render, redirect
 # REGISTRATION #
 ###############
 from date_app.forms import DaterCreationForm
+from date_app.models import Dater
 
 
 def register(request):
@@ -27,7 +29,7 @@ def register(request):
             new_user = authenticate(username=request.POST['username'],
                                     password=request.POST['password1'])
             login(request, new_user)
-            return redirect("home")
+            return redirect("search")
 
     else:
         form = DaterCreationForm()
@@ -35,6 +37,36 @@ def register(request):
     return render(request, "registration/register.html", {
         'form': form,
     })
+
+
+########
+# SEARCH #
+########
+
+#Search for Dater's current location
+# @login_required()
+def search(request):
+    return render(request,"search.html")
+
+
+#Set the Dater's location
+def set_lat_long(request, coordinates):
+    dater = Dater.objects.get(pk=request.user.pk)
+    match = re.search(r'=([^&]*)&[^=]*=(.*)$',coordinates)
+    my_lat = float(match.group(1))
+    my_long = float(match.group(2))
+    dater.latitude = my_lat
+    dater.longitude = my_long
+    dater.save()
+    return home(request)
+
+# def search_lat_long(request, coordinates):
+#     match = re.search(r'=([^&]*)&[^=]*=(.*)$',coordinates)
+#     my_lat = float(match.group(1))
+#     my_longi = float(match.group(2))
+#     dater_list= Dater.objects.filter(latitude__range=(my_lat-.02, my_lat +.02)).filter(longitude__range=(my_longi-.02, my_longi+.02))
+#     return render(request,dater_list)
+
 
 ########
 # HOME #
