@@ -10,7 +10,7 @@
     </div>
 
     <div id="profile_image">
-        <a href="{% url 'dater_profile' user.id %}"><img width="400px" src="{{ user.profile_image }}"></a>
+        <a href="{% url 'dater_profile' user.id %}"><img width="400px" src="{{ user.profile_image.url }}"></a>
     </div>
 
 {#    query bump into matches #}
