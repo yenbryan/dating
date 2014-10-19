@@ -104,5 +104,19 @@ def dater_profile(request, dater_id):
     }
     return render(request, "date_profile.html", data)
 
+###############
+# Date Search #
+###############
+
+def date_search(request): #what other data
+    #you have user1
+    #first filter on location within set radius
+
+    #filter database based on user1 preferences and the gender of user2
+    #once user2s are filtered down, then filter on their gender preference, if their gender preference is user1's preference then keep
+
+    #now go through the matches, if user1 has already seen this user....
+
+
 
 
