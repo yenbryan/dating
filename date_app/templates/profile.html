@@ -1,45 +1,32 @@
-{% extends 'base_template.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
- <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading padding-50">{{ user.username }}'s Profile Page</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 box">
-                    <h2>welcome {{ user.username }}!</h2>
-{#                    {{ user. }}#}
-                </div>
-                <div class="col-lg-4 box">
-                <ul>
-                    <form method="post" action="{% url 'upload_profile_picture' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        {{ picture_form.picture }}
-                    <p class="help-block text-danger"> </p>
-                    </div>
-                    <div class="form-group">
-                        {{ picture_form.description }}
-                    <p class="help-block text-danger"> </p>
-                    </div>
-                    <button class="btn btn-xl" type="submit">register</button>
-                </form>
-                </ul>
-                </div>
-                <div class="col-lg-4 box">
-                <ul>
-                    {% for profile_picture in profile_pictures %}
-                        <img src="{{ profile_picture.image.url }}" class="img-circle img-responsive">
+    <div id="profile_details">
+        <h3>{{ user.username }}</h3>
+        <p>Occupation: {{ user.occupation }}</p>
+        <p>Age: {{ user.age }}</p>
+        <p>Height: {{ user.height }}</p>
+        <p>Weight: {{ user.weight }}</p>
+    </div>
 
-                    {% endfor %}
-                </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="profile_image">
+        <a href="{% url 'dater_profile' user.id %}"><img width="400px" src="{{ user.profile_image.url }}"></a>
+    </div>
 
+{#    query bump into matches #}
+    <div id="bump_into_matches">
+        <h3>Bump Into Matches</h3>
+        {% for match in bump_into_matches %}
+            <li><a href="{% url 'dater_profile' match.user2.pk  %}">{{ match.user2.username }}</a></li>
+        {% endfor %}
+    </div>
+{#    query bumpin matches #}
+    <div id="bumpin_matches">
+        <h3>Bumpin' matches</h3>
+        {% for match in bumpin_matches %}
+            <li><a href="{% url 'dater_profile' match.user2.pk %}">{{ match.user2.username }}</a></li>
+        {% endfor %}
+    </div>
+    <button><a href="#">Start Bumpin'</a></button>
+{#    What info does Bryan need for me to send through?  URL name?#}
 {% endblock content %}
