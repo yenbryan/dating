@@ -17,9 +17,13 @@
     <div id="bump_into_matches">
         <h3>Bump Into Matches</h3>
         {% for match in bump_into_matches %}
+            {% if match.user2.pk != user.pk %}
             <li><a href="{% url 'dater_profile' match.user2.pk  %}">{{ match.user2.username }} Profile</a></li>
             <li><a href="{% url 'chat_room' match.user2.pk  %}">Chat with {{ match.user2.username }}</a></li>
-
+            {% elif match.user1.pk != user.pk %}
+            <li><a href="{% url 'dater_profile' match.user1.pk  %}">{{ match.user1.username }} Profile</a></li>
+            <li><a href="{% url 'chat_room' match.user1.pk  %}">Chat with {{ match.user1.username }}</a></li>
+            {% endif %}
         {% endfor %}
     </div>
 {#    query bumpin matches #}

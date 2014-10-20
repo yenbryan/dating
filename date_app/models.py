@@ -26,7 +26,6 @@ class Image(models.Model):
         return u"{}".format(self.title)
 
 
-
 class Match(models.Model):
     #user selection options:
         #1 = bump_into

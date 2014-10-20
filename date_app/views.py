@@ -11,7 +11,6 @@ from date_app.models import Dater, Match, Chat
 
 
 
-
 # ##############
 # REGISTRATION #
 ###############
@@ -62,7 +61,7 @@ def set_lat_long(request, coordinates):
     dater.latitude = my_lat
     dater.longitude = my_long
     dater.save()
-    return profile(request)
+    return redirect('profile')  # profile(request)
 
 # def search_lat_long(request, coordinates):
 #     match = re.search(r'=([^&]*)&[^=]*=(.*)$',coordinates)
@@ -124,7 +123,6 @@ def chat_room(request, dater_id):
     return render(request, "chat_room.html", data)
 
 
-
 @csrf_exempt
 def new_message(request):
     if request.method == 'POST':
@@ -146,13 +144,25 @@ def chat_messages(request, dater_id):
         messages.append(message)
     for message in message_received:
         messages.append(message)
-
     if len(messages) > 0:
         messages.sort(key=lambda x: x.time, reverse=False)
-    # data = {
-    #     'messages': messages
-    # }
+    names = [str(request.user.id), str(request.user.username), str(dater_id), str(target_dater.username)]
+    data = {
+        'names': names,
+        'messages': messages
+    }
+
     return HttpResponse(
+                # json.dumps(names),
                 serializers.serialize('json', messages),
                 content_type='application/json'
-           )
+    )
+
+def get_names(request):
+    names = {}
+    for dater in Dater.objects.all():
+        names[dater.id] = dater.username
+    return HttpResponse(
+        json.dumps(names),
+        content_type='application/json'
+    )

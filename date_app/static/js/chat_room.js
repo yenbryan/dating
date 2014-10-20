@@ -13,9 +13,10 @@ user_id = $('.user').attr('id');
             url: '../../chat_messages/'+dater_id,
             type: 'GET',
             success: function (data) {
+                console.log(data)
                 var res_str ="";
                 for(var i=0; i < data.length; i++){
-                 res_str += data[i].fields.message + "<br>";
+                 res_str += "<p class='"+data[i].fields.sender+"'>"+data[i].fields.message+"</p>";
                 }
                 $('.message_area').html(res_str);
             }
@@ -23,7 +24,7 @@ user_id = $('.user').attr('id');
     }
 
     loadMessages();
-    setInterval(loadMessages, 500);
+//    setInterval(loadMessages, 500);
 
     $(".add_message").on("click", function () {
         content = $('#message_id').val();
@@ -43,15 +44,17 @@ user_id = $('.user').attr('id');
             }
         });
     });
-});
+        $.ajax({
+        url: '../../get_names/',
+        type: 'GET',
+        success: function (data) {
+//            console.log(data);
+            Object.keys(data).forEach(function (key) {
+            var value = data[key]
+            mykey = document.getElementsByClassName(key);
+            console.log(mykey.length)
+})
 
-//
-//$.ajax({
-//    url: '/new_pokemon/',
-//    type: 'POST',
-//    dataType: 'json',
-//    data: pokemonData,
-//    success: function(response) {
-//    },
-//    error: function(response) {
-//    }
+        }
+    });
+});

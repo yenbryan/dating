@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^chat_room/(?P<dater_id>\w+)/$', 'date_app.views.chat_room', name='chat_room'),
     url(r'^chat_messages/(?P<dater_id>\w+)/$', 'date_app.views.chat_messages', name='chat_messages'),
     url(r'^new_message/$', 'date_app.views.new_message', name='new_message'),
-
+    url(r'^get_names/$', 'date_app.views.get_names', name='get_names'),
 )
 
 
