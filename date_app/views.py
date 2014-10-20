@@ -1,7 +1,13 @@
+from itertools import chain
+import json
 import re
 from django.contrib.auth import authenticate, login
+from django.core import serializers
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from django.views.decorators.csrf import csrf_exempt
+from date_app.forms import DaterCreationForm
+from date_app.models import Dater, Match, Chat
 
 
 
@@ -9,8 +15,7 @@ from django.shortcuts import render, redirect
 # ##############
 # REGISTRATION #
 ###############
-from date_app.forms import DaterCreationForm
-from date_app.models import Dater, Match
+
 
 
 def register(request):
@@ -72,20 +77,26 @@ def set_lat_long(request, coordinates):
 ####################
 
 def bump_into_matches(user):
-    bump_into_matches = Match.objects.filter(user1=user, user1_select=1, user2_select=1)
-    return bump_into_matches  #returns filtered match objects
+    bump_into_matches1 = Match.objects.filter(user1=user, user1_select=1, user2_select=1)
+    bump_into_matches2 = Match.objects.filter(user2=user, user1_select=1, user2_select=1)
+    result_list = list(chain(bump_into_matches1, bump_into_matches2))
+    return result_list  #returns filtered match objects
 
 ##################
 # BUMPIN MATCHES #
 ##################
 
+
 def bumpin_matches(user):
-    bumpin_matches = Match.objects.filter(user1=user, user1_select=3, user2_select=3)
-    return bumpin_matches #returns filtered match objects
+    bumpin_matches1 = Match.objects.filter(user1=user, user1_select=3, user2_select=3)
+    bumpin_matches2 = Match.objects.filter(user2=user, user1_select=3, user2_select=3)
+    result_list = list(chain(bumpin_matches1, bumpin_matches2))
+    return result_list  #returns filtered match objects
 
 ###########
 # PROFILE #
 ###########
+
 
 def profile(request):
     dater = request.user
@@ -97,6 +108,7 @@ def profile(request):
 
     return render(request, "profile.html", data)
 
+
 def dater_profile(request, dater_id):
     data = {
         'dater': Dater.objects.get(pk=dater_id)
@@ -104,4 +116,43 @@ def dater_profile(request, dater_id):
     return render(request, "date_profile.html", data)
 
 
+def chat_room(request, dater_id):
+    data = {
+        'dater': Dater.objects.get(pk=dater_id),
+        'user': request.user
+    }
+    return render(request, "chat_room.html", data)
 
+
+
+@csrf_exempt
+def new_message(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        message = Chat.objects.create(
+            message=data['message'],
+            sender=Dater.objects.get(id=data['sender']),
+            recipient=Dater.objects.get(id=data['recipient'])
+        )
+    response = serializers.serialize('json', [message])
+    return HttpResponse(response, content_type='application/json')
+
+def chat_messages(request, dater_id):
+    target_dater = Dater.objects.get(pk=dater_id)
+    message_sent = Chat.objects.filter(sender=request.user, recipient=target_dater)
+    message_received = Chat.objects.filter(sender=target_dater, recipient=request.user)
+    messages = []
+    for message in message_sent:
+        messages.append(message)
+    for message in message_received:
+        messages.append(message)
+
+    if len(messages) > 0:
+        messages.sort(key=lambda x: x.time, reverse=False)
+    # data = {
+    #     'messages': messages
+    # }
+    return HttpResponse(
+                serializers.serialize('json', messages),
+                content_type='application/json'
+           )

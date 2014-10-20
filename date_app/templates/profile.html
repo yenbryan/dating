@@ -17,14 +17,17 @@
     <div id="bump_into_matches">
         <h3>Bump Into Matches</h3>
         {% for match in bump_into_matches %}
-            <li><a href="{% url 'dater_profile' match.user2.pk  %}">{{ match.user2.username }}</a></li>
+            <li><a href="{% url 'dater_profile' match.user2.pk  %}">{{ match.user2.username }} Profile</a></li>
+            <li><a href="{% url 'chat_room' match.user2.pk  %}">Chat with {{ match.user2.username }}</a></li>
+
         {% endfor %}
     </div>
 {#    query bumpin matches #}
     <div id="bumpin_matches">
         <h3>Bumpin' matches</h3>
         {% for match in bumpin_matches %}
-            <li><a href="{% url 'dater_profile' match.user2.pk %}">{{ match.user2.username }}</a></li>
+            <li><a href="{% url 'dater_profile' match.user2.pk %}">{{ match.user2.username }} Profile</a></li>
+            <li><a href="{% url 'chat_room' match.user2.pk  %}">Chat with {{ match.user2.username }}</a></li>
         {% endfor %}
     </div>
     <button><a href="#">Start Bumpin'</a></button>

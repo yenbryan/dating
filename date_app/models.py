@@ -40,3 +40,13 @@ class Match(models.Model):
 
     def __unicode__(self):
         return u"{} rated {}".format(self.user1, self.user2)
+
+
+class Chat(models.Model):
+    message = models.TextField()
+    sender = models.ForeignKey(Dater, related_name='user_sender')
+    recipient = models.ForeignKey(Dater, related_name='user_recipient')
+    time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return u"{} messaged {}".format(self.sender, self.recipient)
