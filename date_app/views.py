@@ -128,7 +128,6 @@ def dater_profile(request, dater_id):
         'dater': Dater.objects.get(pk=dater_id)
     }
     return render(request, "date_profile.html", data)
-
 ###############
 # Date Search #
 ###############
@@ -160,6 +159,7 @@ def date_search(request,i): #what other data
         'match_list': match_list,
     }
     return render(request, "date_search.html", data)
+
 
 def chat_room(request, dater_id):
     data = {
@@ -240,3 +240,4 @@ def bumped_option(request, i, dater, option):
     else:
         Match.objects.create(user1=request.user, user2=dater, user1_select=option, user2_select=0)
     return redirect(date_search(request, i))
+
