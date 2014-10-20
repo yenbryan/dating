@@ -116,22 +116,40 @@ def dater_profile(request, dater_id):
     }
     return render(request, "date_profile.html", data)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 26374c2c83b4848d7080557be17778e00b2f8859
 
 ###############
 # Date Search #
 ###############
 
-def date_search(request): #what other data
-    #you have user1
+def date_search(request,i): #what other data
+    user = request.user
+    i = int(i)
     #first filter on location within set radius
+    # Dater.objects.filter(latitude__range=(user.latitude -.02, user.latitude +.02)).filter(longitude__range=(user.longitude -.02, user.longitude +.02))
 
     #filter database based on user1 preferences and the gender of user2
+    # Dater.objects.filter(gender_male=user.gender_preference_male)
+
     #once user2s are filtered down, then filter on their gender preference, if their gender preference is user1's preference then keep
+    # Dater.objects.filter(gender_preference_male=user.gender_male)
+    dater_list= Dater.objects.filter(latitude__range=(user.latitude -.02, user.latitude +.02))\
+        .filter(longitude__range=(user.longitude -.02, user.longitude +.02))\
+        .filter(gender_male=user.gender_preference_male)\
+        .filter(gender_preference_male=user.gender_male).exclude(id=user.id)
 
-    #now go through the matches, if user1 has already seen this user....
+    #remove matches which user has already seen
+    match_list = []
+    for user2 in dater_list:
+        if not Match.objects.filter(user1=user, user2=user2, user1_select__isnull=True).exists():
+            match_list.append(user2)
 
+    data = {
+        'user2': match_list[i],
+        'i': i+1,
+        'match_list': match_list,
+    }
+    return render(request, "date_search.html", data)
 
-
-
-=======
->>>>>>> e5ce82a737f8c6d6c4a57f7272602aec54c3fcd8
