@@ -147,6 +147,7 @@ def chat_messages(request, dater_id):
     if len(messages) > 0:
         messages.sort(key=lambda x: x.time, reverse=False)
     names = [str(request.user.id), str(request.user.username), str(dater_id), str(target_dater.username)]
+    print messages
     data = {
         'names': names,
         'messages': messages
@@ -158,6 +159,7 @@ def chat_messages(request, dater_id):
                 content_type='application/json'
     )
 
+
 def get_names(request):
     names = {}
     for dater in Dater.objects.all():
@@ -166,3 +168,19 @@ def get_names(request):
         json.dumps(names),
         content_type='application/json'
     )
+
+def chat_messages_template(request, dater_id):
+    target_dater = Dater.objects.get(pk=dater_id)
+    message_sent = Chat.objects.filter(sender=request.user, recipient=target_dater)
+    message_received = Chat.objects.filter(sender=target_dater, recipient=request.user)
+    messages = []
+    for message in message_sent:
+        messages.append(message)
+    for message in message_received:
+        messages.append(message)
+    if len(messages) > 0:
+        messages.sort(key=lambda x: x.time, reverse=False)
+    data = {
+        'messages': messages
+    }
+    return render(request, 'chat_messages.html', data)

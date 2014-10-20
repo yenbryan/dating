@@ -7,24 +7,19 @@
 $(document).ready(function() {
 dater_id = $('.chat_area').attr('id');
 user_id = $('.user').attr('id');
-    function loadMessages() {
+    function loadMessages_template() {
 //        console.log("loading");
         $.ajax({
-            url: '../../chat_messages/'+dater_id,
+            url: '../../chat_messages_template/'+dater_id,
             type: 'GET',
             success: function (data) {
-                console.log(data)
-                var res_str ="";
-                for(var i=0; i < data.length; i++){
-                 res_str += "<p class='"+data[i].fields.sender+"'>"+data[i].fields.message+"</p>";
-                }
-                $('.message_area').html(res_str);
+                $('.message_area').html(data)
             }
         });
     }
 
-    loadMessages();
-//    setInterval(loadMessages, 500);
+    loadMessages_template();
+    setInterval(loadMessages_template, 500);
 
     $(".add_message").on("click", function () {
         content = $('#message_id').val();
@@ -44,17 +39,5 @@ user_id = $('.user').attr('id');
             }
         });
     });
-        $.ajax({
-        url: '../../get_names/',
-        type: 'GET',
-        success: function (data) {
-//            console.log(data);
-            Object.keys(data).forEach(function (key) {
-            var value = data[key]
-            mykey = document.getElementsByClassName(key);
-            console.log(mykey.length)
-})
 
-        }
-    });
 });
