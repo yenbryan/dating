@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+    <script src="{% static 'js/chat_room.js' %}"></script>
+{% endblock extra_head %}
+{% block content %}
+    <h1 id="{{ user.id }}" class="user">Chat with {{ dater }}</h1>
+
+    <div id='{{ dater.id }}' class="chat_area">
+    <div class="message_area">
+
+    </div>
+    <div class="send_message">
+        <input id='message_id' class="message_content" type="text"/>
+       <div class="add_message">
+           <input type="submit" value="Submit"/>
+       </div>
+    </div>
+    </div>
+
+{% endblock content %}
