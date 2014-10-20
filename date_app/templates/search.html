@@ -24,9 +24,20 @@ function getLocation() {
 function redirect(position) {
     var my_lat = position.coords.latitude;
     var my_longi = position.coords.longitude;
-    window.location ='/search/lat='+my_lat+'&longi='+my_longi+"/"
-
+    var url = '/save-lat-long/';
+    var form = $('<form action="' + url + '" method="post">' +
+      '<input type="text" name="lat" value="' + my_lat + '" />' +
+      '<input type="text" name="long" value="' + my_longi + '" />' +
+      '</form>');
+    $(form).submit();
 }
+
+{#function redirect(position) {#}
+{#    var my_lat = position.coords.latitude;#}
+{#    var my_longi = position.coords.longitude;#}
+{#    window.location ='/search/lat='+my_lat+'&longi='+my_longi+"/"#}
+{##}
+{#}#}
 
 $(function() {
          var progressbar = $( "#progressbar-5" );
