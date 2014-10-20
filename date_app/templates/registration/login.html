@@ -1,37 +1,25 @@
-{#{% extends "base_template.html" %}#}
-{##}
-{#{% block content %}#}
-{##}
-{# <section id="register">#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="col-lg-12 text-center site-heading">#}
-{#                    <h2 class="section-heading">login & date</h2>#}
-{#                    <h3 class="section-subheading text-muted"></h3>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="row">#}
-{#                <div class="col-lg-3">#}
-{#                </div>#}
-{#                <div class="col-lg-6 text-center box">#}
-{#                    <form method="post" action=".">#}
-{#                        {% csrf_token %}#}
-{#                        <div class="form-group">#}
-{#                            {{ form.username }}#}
-{##}
-{#                        </div>#}
-{#                        <div class="form-group">#}
-{#                            {{ form.password }}#}
-{##}
-{#                        </div>#}
-{#                        <button class="btn btn-xl pull-left" type="submit">register</button>#}
-{#                        <button class="btn btn-xl facebook-blue pull-right center" id="facebook-btn-2"><a href="{% url "social:begin" "facebook" %}">f&nbsp;login</a></button>#}
-{#                        <p>Not member? <a href="{% url 'register' %}">Register!</a></p>#}
-{#                    </form>#}
-{#                </div>#}
-{#                <div class="col-lg-3">#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{# </section>#}
-{#{% endblock %}#}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Login to Bump!</h1>
+        <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class= "btn btn-primary" type="submit" value="Log in">Log in</button>
+    </form>
+    <p style="float: left">Not a member? <a class= "btn btn-primary" href="{% url 'register' %}">Register!</a></p>
+        <a class="btn btn-primary" href="{% url 'password_reset' %}">Forgot Password?</a>
+
+    </div>
+</body>
+</html>
