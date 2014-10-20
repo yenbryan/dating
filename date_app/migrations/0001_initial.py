@@ -36,11 +36,7 @@ class Migration(migrations.Migration):
                 ('weight', models.IntegerField(max_length=4, null=True, blank=True)),
                 ('latitude', models.FloatField(null=True)),
                 ('longitude', models.FloatField(null=True)),
-<<<<<<< HEAD
-                ('profile_image', models.ImageField(upload_to=b'profile_pictures')),
-=======
                 ('profile_image', models.ImageField(null=True, upload_to=b'profile_pictures', blank=True)),
->>>>>>> master
                 ('groups', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of his/her group.', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Permission', blank=True, help_text='Specific permissions for this user.', verbose_name='user permissions')),
             ],

@@ -148,3 +148,12 @@ def date_search(request,i): #what other data
         'match_list': match_list,
     }
     return render(request, "date_search.html", data)
+
+def bumped_option(request, i, dater, option):
+    if Match.objects.filter(user1=dater, user2=request.user):
+        prev_match = Match.objects.get(user1=dater, user2=request.user)
+        prev_match.user2_select = option
+        prev_match.save()
+    else:
+        Match.objects.create(user1=request.user, user2=dater, user1_select=option, user2_select=0)
+    return redirect(date_search(request, i))

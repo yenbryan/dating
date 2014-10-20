@@ -28,5 +28,30 @@
 
 {#    BRYAN add javascript stuff here and get rid of the button#}
     <button><a href="{% url 'date_search' i %}">Next</a></button>
+    <button><a href="{% url 'bumped_option' i user2.id 1 %}">bumped into</a></button>
+    <button><a href="{% url 'bumped_option' i user2.id 3 %}">bumped</a></button>
+    <button><a href="{% url 'bumped_option' i user2.id 2 %}">bumped to curb</a></button>
 </div>
+
+    <script>
+        $(document).keydown(function(e) {
+            switch(e.which) {
+                case 37: // left
+                    alert("left key");
+                break;
+
+                case 38: // up
+                break;
+
+                case 39: // right
+                break;
+
+                case 40: // down
+                break;
+
+                default: return; // exit this handler for other keys
+            }
+            e.preventDefault(); // prevent the default action (scroll / move caret)
+        });
+    </script>
 {% endblock content %}
