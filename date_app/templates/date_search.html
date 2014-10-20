@@ -5,8 +5,28 @@
 {#    {% for user in match_list %}#}
 {#        {{ user.username }}#}
 {#    {% endfor %}#}
+<div class="container">
+    <div class="row">
+        <h3>{{ user2.username }}</h3>
+    </div>
+    <div class="row">
+        <div class="col-xs-9 col-xs-offset-1">
+            <img src="{{ user2.profile_image.url }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <p>HEIGHT: {{ user2.height }}</p>
+        </div>
+        <div class="col-xs-3">
+            <p>WEIGHT: {{ user2.weight }}</p>
+        </div>
+        <div class="col-xs-3">
+            <p>OCCUPATION: {{ user2.occupation }}</p>
+        </div>
+    </div>
 
-    first_match: {{ user2.username }}
+{#    BRYAN add javascript stuff here and get rid of the button#}
     <button><a href="{% url 'date_search' i %}">Next</a></button>
-
+</div>
 {% endblock content %}
