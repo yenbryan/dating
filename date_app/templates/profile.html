@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
     <div id="profile_details">
@@ -27,6 +28,6 @@
             <li><a href="{% url 'dater_profile' match.user2.pk %}">{{ match.user2.username }}</a></li>
         {% endfor %}
     </div>
-    <button><a href="#">Start Bumpin'</a></button>
+    <button><a href="{% url 'date_search' 0 %}">Start Bumpin'</a></button>
 {#    What info does Bryan need for me to send through?  URL name?#}
 {% endblock content %}

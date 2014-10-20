@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{#    {% for user in match_list %}#}
+{#        {{ user.username }}#}
+{#    {% endfor %}#}
+
+    first_match: {{ user2.username }}
+    <button><a href="{% url 'date_search' i %}">Next</a></button>
+
+{% endblock content %}

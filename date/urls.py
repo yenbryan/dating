@@ -26,6 +26,9 @@ urlpatterns = patterns('',
     url(r'^profile/$', 'date_app.views.profile', name='profile'),
     #DATER PROFILE#
     url(r'^dater_profile/(?P<dater_id>\w+)/$', 'date_app.views.dater_profile', name='dater_profile'),
+    #DATER SEARCH#
+    url(r'^date_search/(?P<i>\d+)/$', 'date_app.views.date_search', name='date_search'),
+
 )
 
 
