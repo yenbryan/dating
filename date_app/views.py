@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 # ##############
 # REGISTRATION #
 ###############
+from django.views.decorators.csrf import csrf_exempt
 from date_app.forms import DaterCreationForm
 from date_app.models import Dater, Match
 
@@ -47,6 +48,17 @@ def register(request):
 def search(request):
     return render(request, "search.html")
 
+@csrf_exempt
+def save_lat_long(request):
+    if request.method == "POST":
+        dater = Dater.objects.get(pk=request.user.pk)
+        my_lat = float(request.POST['lat'])
+        my_long = float(request.POST['long'])
+        dater.latitude = my_lat
+        dater.longitude = my_long
+        dater.save()
+        return redirect('profile')
+
 
 #Set the Dater's location
 def set_lat_long(request, coordinates):
@@ -59,13 +71,14 @@ def set_lat_long(request, coordinates):
     dater.save()
     return profile(request)
 
-# def search_lat_long(request, coordinates):
-#     match = re.search(r'=([^&]*)&[^=]*=(.*)$',coordinates)
-#     my_lat = float(match.group(1))
-#     my_longi = float(match.group(2))
-#     dater_list= Dater.objects.filter(latitude__range=(my_lat-.02, my_lat +.02)).filter(longitude__range=(my_longi-.02, my_longi+.02))
-#     return render(request,dater_list)
-
+# def search_match(request):
+#     my_lat = request.user.latitude
+#     my_longi = request.user.longitude
+#     bump_into_matches = Match.objects.filter(user1=user, user1_select=1, user2_select=1)
+#     dater_list= Dater.objects.filter(latitude__range=(my_lat-.02, my_lat +.02)).\
+#         filter(longitude__range=(my_longi-.02, my_longi+.02)).exclude(id=request.user.id)
+#     return render(request,'search_match.html', {'dater_list': dater_list})
+#
 
 #####################
 # BUMP INTO MATCHES #
@@ -102,6 +115,7 @@ def dater_profile(request, dater_id):
         'dater': Dater.objects.get(pk=dater_id)
     }
     return render(request, "date_profile.html", data)
+<<<<<<< HEAD
 
 ###############
 # Date Search #
@@ -119,3 +133,5 @@ def date_search(request): #what other data
 
 
 
+=======
+>>>>>>> e5ce82a737f8c6d6c4a57f7272602aec54c3fcd8
