@@ -67,18 +67,7 @@ def set_lat_long(request, coordinates):
     dater.save()
     return profile(request)
 
-<<<<<<< HEAD
 
-=======
-# def search_match(request):
-#     my_lat = request.user.latitude
-#     my_longi = request.user.longitude
-#     bump_into_matches = Match.objects.filter(user1=user, user1_select=1, user2_select=1)
-#     dater_list= Dater.objects.filter(latitude__range=(my_lat-.02, my_lat +.02)).\
-#         filter(longitude__range=(my_longi-.02, my_longi+.02)).exclude(id=request.user.id)
-#     return render(request,'search_match.html', {'dater_list': dater_list})
-#
->>>>>>> 5489b431c1a60111fe57d0618d7d985198bf3db4
 
 #####################
 # BUMP INTO MATCHES #
@@ -115,20 +104,13 @@ def dater_profile(request, dater_id):
         'dater': Dater.objects.get(pk=dater_id)
     }
     return render(request, "date_profile.html", data)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 26374c2c83b4848d7080557be17778e00b2f8859
+
 
 ###############
 # Date Search #
 ###############
 
-<<<<<<< HEAD
-def date_search(request,i):
-=======
 def date_search(request,i): #what other data
->>>>>>> 5489b431c1a60111fe57d0618d7d985198bf3db4
     user = request.user
     i = int(i)
     #first filter on location within set radius
@@ -157,10 +139,3 @@ def date_search(request,i): #what other data
     }
     return render(request, "date_search.html", data)
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 5489b431c1a60111fe57d0618d7d985198bf3db4
