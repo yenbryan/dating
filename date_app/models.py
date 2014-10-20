@@ -11,7 +11,7 @@ class Dater(AbstractUser):
     weight = models.IntegerField(max_length=4, null=True, blank=True)
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
-    profile_image = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
+    profile_image = models.ImageField(upload_to='profile_pictures')
 
     def __unicode__(self):
         return u"{}".format(self.username)

@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     #SEARCH#
     url(r'^search/$', 'date_app.views.search', name='search'),
     url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.set_lat_long', name='set_lat_long'),
-
+    url(r'^save-lat-long/$', 'date_app.views.save_lat_long',name='save_lat_long'),
     # url(r'^search/(?P<coordinates>.*)/$', 'date_app.views.search_lat_long', name='search_lat_long'),
     #PROFILE#
     url(r'^profile/$', 'date_app.views.profile', name='profile'),
@@ -32,6 +32,9 @@ urlpatterns = patterns('',
     url(r'^chat_messages_template/(?P<dater_id>\w+)/$', 'date_app.views.chat_messages_template', name='chat_messages_template'),
     url(r'^new_message/$', 'date_app.views.new_message', name='new_message'),
     url(r'^get_names/$', 'date_app.views.get_names', name='get_names'),
+    #DATER SEARCH#
+    url(r'^date_search/(?P<i>\d+)/$', 'date_app.views.date_search', name='date_search'),
+    url(r'^bumped_option/(?P<i>\d+)/(?P<dater>\d+)/(?P<option>\d+)/$', 'date_app.views.bumped_option', name='bumped_option'),
 )
 
 

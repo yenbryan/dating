@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
     <div id="profile_details">
@@ -34,6 +35,28 @@
             <li><a href="{% url 'chat_room' match.user2.pk  %}">Chat with {{ match.user2.username }}</a></li>
         {% endfor %}
     </div>
-    <button><a href="#">Start Bumpin'</a></button>
+    <button><a href="{% url 'date_search' 0 %}">Start Bumpin'</a></button>
 {#    What info does Bryan need for me to send through?  URL name?#}
+
+     <script>
+        $(document).keydown(function(e) {
+            switch(e.which) {
+                case 37: // left
+                    alert("left key");
+                break;
+
+                case 38: // up
+                break;
+
+                case 39: // right
+                break;
+
+                case 40: // down
+                break;
+
+                default: return; // exit this handler for other keys
+            }
+            e.preventDefault(); // prevent the default action (scroll / move caret)
+        });
+    </script>
 {% endblock content %}
