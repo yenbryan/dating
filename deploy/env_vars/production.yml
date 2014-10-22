@@ -1,0 +1,8 @@
+---
+
+db_name: "dating"
+
+db_user: "dating"
+db_password: "Zephyr00"
+nginx_server_name: "ec2-54-187-250-19.us-west-2.compute.amazonaws.com"
+django_settings_file: date.settings

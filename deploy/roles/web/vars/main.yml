@@ -1,0 +1,7 @@
+---
+
+virtualenv_path: "/home/ubuntu/.virtualenvs/dating"
+git_repo: https://github.com/yenbryan/dating.git
+project_name: dating
+project_path: "/home/ubuntu/{{ project_name }}"
+requirements_file: "{{ project_path }}/requirements.txt"

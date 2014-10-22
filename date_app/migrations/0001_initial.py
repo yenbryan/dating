@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('weight', models.IntegerField(max_length=4, null=True, blank=True)),
                 ('latitude', models.FloatField(null=True)),
                 ('longitude', models.FloatField(null=True)),
-                ('profile_image', models.ImageField(null=True, upload_to=b'profile_pictures', blank=True)),
+                ('profile_image', models.ImageField(upload_to=b'profile_pictures')),
                 ('groups', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of his/her group.', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Permission', blank=True, help_text='Specific permissions for this user.', verbose_name='user permissions')),
             ],
@@ -44,6 +44,19 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'verbose_name': 'user',
                 'verbose_name_plural': 'users',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Chat',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('message', models.TextField()),
+                ('time', models.DateTimeField(auto_now_add=True)),
+                ('recipient', models.ForeignKey(related_name=b'user_recipient', to=settings.AUTH_USER_MODEL)),
+                ('sender', models.ForeignKey(related_name=b'user_sender', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
             },
             bases=(models.Model,),
         ),

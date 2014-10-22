@@ -1,0 +1,6 @@
+---
+
+- name: Provision a RocketU Blog Analytics server
+  hosts: all
+  sudo: yes
+  sudo_user: root
