@@ -18,3 +18,7 @@
 - name: Latest version of pip
   pip: name=pip state=latest
   tags: packages
+
+- name: Latest version of virtualenv
+  pip: name=virtualenv state=latest
+  tags: packages
