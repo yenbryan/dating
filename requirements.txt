@@ -1,10 +1,12 @@
 Django==1.7
 Pillow==2.6.0
 PyJWT==0.2.1
+argparse==1.2.1
 braintree==3.5.0
 coverage==3.7.1
 django-crispy-forms==1.4.0
 facebook-sdk==0.4.0
+gunicorn==19.1.1
 oauthlib==0.6.3
 pep8==1.5.7
 psycopg2==2.5.4
