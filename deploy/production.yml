@@ -1,0 +1,6 @@
+---
+
+- name: Provision a Dating server
+  hosts: all
+  sudo: yes
+  sudo_user: root
