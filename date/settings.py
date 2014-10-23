@@ -46,6 +46,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 MIDDLEWARE_CLASSES = (
+    'appenlight_client.django_middleware.AppenlightMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,3 +135,5 @@ except ImportError:
 #     'django.template.loaders.app_directories.Loader',
 # )
 
+import appenlight_client.client as e_client
+APPENLIGHT = e_client.get_config({'appenlight.api_key':'8f6ea4ad96e4b558a82d2adabf60fc2'})
