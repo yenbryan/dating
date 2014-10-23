@@ -35,6 +35,8 @@ urlpatterns = patterns('',
     #DATER SEARCH#
     url(r'^date_search/(?P<i>\d+)/$', 'date_app.views.date_search', name='date_search'),
     url(r'^bumped_option/(?P<i>\d+)/(?P<dater>\d+)/(?P<option>\d+)/$', 'date_app.views.bumped_option', name='bumped_option'),
+    url(r'^error/$', 'date_app.views.error', name='error'),
+
 )
 
 

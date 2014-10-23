@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
     'crispy_forms',
+    'raven.contrib.django.raven_compat'
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

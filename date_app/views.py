@@ -241,3 +241,8 @@ def bumped_option(request, i, dater, option):
         Match.objects.create(user1=request.user, user2=dater, user1_select=option, user2_select=0)
     return redirect(date_search(request, i))
 
+def error(request):
+    my_variable = '!'
+    my_list = ['testing', 'a', 'list', 'out']
+    my_list = ["{}{}".format(list_item, my_variable) for list_item in my_list]
+    raise NotImplementedError("Woops! This doesn't exist.")

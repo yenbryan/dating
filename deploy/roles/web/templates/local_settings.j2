@@ -15,3 +15,7 @@ STATIC_URL = '/static/'
 
 DEBUG = True
 ALLOWED_HOSTS = ['{{ nginx_server_name }}']
+
+RAVEN_CONFIG = {
+    'dsn': 'https://a3cd84db473145aaba7c36fa4b61d7a7:e6b1c5d33e39416a8827ea374ecd6c48@app.getsentry.com/32036',
+}
