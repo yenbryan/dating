@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from date_app.forms import DaterCreationForm
 from date_app.models import Dater, Match, Chat
@@ -111,7 +112,7 @@ def bumpin_matches(user):
 # PROFILE #
 ###########
 
-
+@cache_page(60)
 def profile(request):
     dater = request.user
 
@@ -227,7 +228,8 @@ def chat_messages_template(request, dater_id):
     if len(messages) > 0:
         messages.sort(key=lambda x: x.time, reverse=False)
     data = {
-        'messages': messages
+        'messages': messages,
+        'target_dater': target_dater,
     }
     return render(request, 'chat_messages.html', data)
 

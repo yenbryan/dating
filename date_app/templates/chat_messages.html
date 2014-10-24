@@ -1,5 +1,10 @@
 <div class="message_area">
     {% for message in messages %}
-    <p class="message">{{ message.sender }}: {{ message.message }}</p>
+    {% if message.sender == user %}
+        <img width="50px" src="{{ user.profile_image.url }}">
+    {% else %}
+{#        <img width="50px" src="{{ target_dater.profile_image.url }}">#}
+    {% endif %}
+        <p class="message">{{ message.sender }}: {{ message.message }}</p>
     {% endfor %}
 </div>
