@@ -1,5 +1,5 @@
 ## The following requirements were added by pip --freeze:
-Django==1.7
+Django==1.11.29
 Fabric==1.10.0
 Jinja2==2.7.3
 MarkupSafe==0.23
