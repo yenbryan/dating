@@ -1,7 +1,7 @@
 ## The following requirements were added by pip --freeze:
 Django==1.7
 Fabric==1.10.0
-Jinja2==2.7.3
+Jinja2==2.11.3
 MarkupSafe==0.23
 Pillow==2.6.0
 PyJWT==0.2.1
