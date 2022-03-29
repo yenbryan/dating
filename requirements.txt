@@ -15,7 +15,7 @@ ecdsa==0.11
 facebook-sdk==0.4.0
 newrelic==2.34.0.29
 oauthlib==0.6.3
-paramiko==1.15.1
+paramiko==2.10.1
 psycopg2==2.5.4
 pycrypto==2.6.1
 python-openid==2.2.5
